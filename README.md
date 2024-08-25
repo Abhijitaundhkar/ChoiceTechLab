@@ -30,14 +30,13 @@ npm run dev
 
 # Folder Structure
 
-src->config->all database ,authentication(jwt) logic
+src->config->database connections and authentication configurations like JWT.
 
-src->controller->all business logic
+src->controller->handling all your business logic.
 
 src->routes->all app routes with folder
 
-src->middleware->middleware which use for app like
-authentication,role
+src->middleware->authentication and role-based middleware
 
 src->models->all database schema
 
