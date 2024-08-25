@@ -2,7 +2,7 @@
 
 # API Test Collection
 
-Attached postman API Test Collection: TO-DO-List.json
+Attached postman api test collection: TO-DO-List.json
 
 # Setup
 
