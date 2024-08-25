@@ -1,16 +1,21 @@
 require("dotenv").config();
 const express = require("express");
-const { connectDb } = require("./dbConnection/dbconfig");
+const connectDB = require("./src/config/db");
+const redisClient = require("./src/config/redis");
+const cookieParser = require("cookie-parser");
+const authRoutes = require("./src/routes/authRoutes");
+const taskRoutes = require("./src/routes/taskRoutes");
+
+connectDB();
+redisClient.emit("connect");
+
 const app = express();
+app.use(cookieParser());
+app.use(express.json());
 
-const port = process.env.PORT || 3000;
-app.use(express.json({ extended: false }));
-app.use(express.urlencoded({ extended: false }));
-app.get("/", (req, res) => {
-  res.send("Default route");
-});
+app.use("/api/auth", authRoutes);
+app.use("/api/tasks", taskRoutes);
 
-app.listen(port, async (req, res) => {
-  console.log(`Server started on http://localhost${port}`);
-  connectDb();
-});
+const PORT = process.env.PORT || 5000;
+
+app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
