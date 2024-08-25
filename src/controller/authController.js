@@ -4,20 +4,45 @@ const generateToken = require("../config/jwt");
 
 exports.getAllUser = async (req, res) => {
   try {
+    //default page setting
     const { page = 1, limit = 10 } = req.query;
     const offset = (page - 1) * limit;
-    const userExists = await User.find({}, page, offset);
+    //find use and add pagination based on query params
+    const users = await User.find().skip(offset).limit(parseInt(limit));
 
-    if (userExists) {
-      return res.status(200).json({ data: userExists });
+    // Get the total number of users to calculate total pages
+    const totalUsers = await User.countDocuments();
+
+    // Return the paginated data along with additional pagination info
+    return res.status(200).json({
+      data: users,
+      currentPage: page,
+      totalPages: Math.ceil(totalUsers / limit),
+      totalUsers: totalUsers,
+    });
+  } catch (error) {
+    return res.status(500).json({ err: error.message });
+  }
+};
+
+exports.getUserById = async (req, res) => {
+  try {
+    const user = await User.findOne({ _id: req.params.id });
+    if (user) {
+      return res.status(200).json({
+        data: user,
+      });
+    } else {
+      return res.status(400).json({ message: "User Not Found" });
     }
   } catch (error) {
-    return res.status(200).json({ err: error.message });
+    return res.status(500).json({ err: error.message });
   }
 };
 exports.registerUser = async (req, res) => {
   try {
     const { username, email, password, role } = req.body;
+    //Check user exists or not
     const userExists = await User.findOne({ email });
     // if (!username || !email || !password) {
     //   return res.status(400).json({ message: "add all required fields" });
@@ -25,8 +50,10 @@ exports.registerUser = async (req, res) => {
     if (userExists) {
       return res.status(400).json({ message: "User already exists" });
     }
+    //encrypt the password to
     const salt = await bcryptjs.genSalt(10);
     const hashPassWord = await bcryptjs.hash(password, salt);
+    //save to db
     const user = await User.create({
       username,
       email,
@@ -49,11 +76,15 @@ exports.registerUser = async (req, res) => {
 };
 exports.updateUser = async (req, res) => {
   try {
+    let hashPassword;
     const { username, email, password, role } = req.body;
-    const user = await User.findById(req.params._id);
-    const hashPassword = password
-      ? await bcryptjs.hash(password, 10)
-      : user.password;
+    const user = await User.findById(req.params.id);
+    //if password is updated then encrypt password
+    if (password) {
+      hashPassword = await bcryptjs.hash(password, 10);
+    } else {
+      hashPassword = user.password;
+    }
     console.log(hashPassword);
     if (user) {
       user.username = req.body.username || user.username;
@@ -75,8 +106,13 @@ exports.updateUser = async (req, res) => {
 };
 exports.deleteUser = async (req, res) => {
   try {
-    const userExists = await User.findOneAndDelete(req.params._id);
-    if (userExists) {
+    //find and deleted by id
+    const user = await User.findOneAndDelete(req.params.id);
+
+    if (user) {
+      if (user.role === "admin") {
+        res.cookie("jwt", "", { maxAge: 0 });
+      }
       res.status(201).json({
         message: "User delete successfully",
       });

@@ -6,16 +6,24 @@ const cookieParser = require("cookie-parser");
 const authRoutes = require("./src/routes/authRoutes");
 const taskRoutes = require("./src/routes/taskRoutes");
 
-connectDB();
-redisClient.emit("connect");
-
 const app = express();
+
 app.use(cookieParser());
+//extract json body
 app.use(express.json());
 
+//route middleware
 app.use("/api/auth", authRoutes);
 app.use("/api/tasks", taskRoutes);
-
+//default route
+app.use("*", (req, res) => {
+  return res.status(400).json({ message: "Default or Wrong api called" });
+});
 const PORT = process.env.PORT || 5000;
-
-app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
+//server run on port
+app.listen(PORT, () => {
+  console.log(`Server running on port ${PORT}`),
+    //connect to mongo Db
+    connectDB();
+  redisClient;
+});

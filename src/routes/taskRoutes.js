@@ -9,7 +9,7 @@ const { protect } = require("../middleware/authMiddleware");
 const { checkRole } = require("../middleware/roleMiddleware");
 
 const router = express.Router();
-
+//all routes of tasks
 router.get("/", protect, getTasks);
 router.post("/addTask", protect, createTask);
 router.put("/updateTask/:id", protect, updateTask);
