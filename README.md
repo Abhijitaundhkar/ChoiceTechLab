@@ -29,6 +29,9 @@ In the terminal, run the following command to open the project in Visual Studio 
 
 code .
 
+# Install Dependencies
+npm install
+
 # Folder Structure
 
 src->config->database connections and authentication configurations like JWT.
