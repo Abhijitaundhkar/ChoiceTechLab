@@ -14,9 +14,7 @@ Navigate to the directory where you want to clone the project.
 
 Run the following command to clone the repository:
 
-git clone https://github.com/your-username/ChoiceTechLab-Assignment.git
-
-Replace your-username with your actual GitHub username.
+git clone https://github.com/Abhijitaundhkar/ChoiceTechLab-Assignment.git
 
 Navigate to the Project Directory:
 
