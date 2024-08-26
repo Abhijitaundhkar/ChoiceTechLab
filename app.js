@@ -22,8 +22,9 @@ app.use("*", (req, res) => {
 const PORT = process.env.PORT || 5000;
 //server run on port
 app.listen(PORT, () => {
+  //connect to mongo Db
+    await connectDB();
+  await redisClient.connect();
   console.log(`Server running on port ${PORT}`),
-    //connect to mongo Db
-    connectDB();
-  redisClient;
+    
 });
