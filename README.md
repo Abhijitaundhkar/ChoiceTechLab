@@ -6,11 +6,15 @@ Attached postman api test collection: TO-DO-List.json
 
 # Setup
 
-Create you folder 
-
-cd create_your_folder
-
 git clone "https://github.com/Abhijitaundhkar/ChoiceTechLab-Assignment.git"
+
+Navigate cd ChoiceTechLab-Assignment 
+
+#Installation
+
+Navigate to the root directory:
+
+Install dependencies:npm install
 
 # Environment Configuration
 
@@ -20,11 +24,6 @@ MONGODB_URI=your_URI
 
 DB_PORT=your_port
 
-#Installation
-
-Navigate to the root directory:
-
-Install dependencies:npm install
 
 # Start app
 
