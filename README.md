@@ -6,28 +6,28 @@ Attached postman api test collection: TO-DO-List.json
 
 # Setup
 
-git clone "https://github.com/Abhijitaundhkar/ChoiceTechLab-Assignment.git"
+Clone the Repository:
 
-Navigate cd ChoiceTechLab-Assignment 
+Open your terminal or command prompt.
 
-#Installation
+Navigate to the directory where you want to clone the project.
 
-Navigate to the root directory:
+Run the following command to clone the repository:
 
-Install dependencies:npm install
+git clone https://github.com/your-username/ChoiceTechLab-Assignment.git
 
-# Environment Configuration
+Replace your-username with your actual GitHub username.
 
-Add your Mongodb URI database configuration to the .env file.
+Navigate to the Project Directory:
 
-MONGODB_URI=your_URI
+Change to the cloned project directory:
 
-DB_PORT=your_port
+cd ChoiceTechLab-Assignment
+Open the Project in Visual Studio Code:
 
+In the terminal, run the following command to open the project in Visual Studio Code:
 
-# Start app
-
-npm run dev
+code .
 
 # Folder Structure
 
