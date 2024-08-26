@@ -6,6 +6,8 @@ Attached postman api test collection: TO-DO-List.json
 
 # Setup
 
+Create you folder 
+
 cd create_your_folder
 
 git clone "https://github.com/Abhijitaundhkar/ChoiceTechLab-Assignment.git"
