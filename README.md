@@ -18,12 +18,11 @@ git clone https://github.com/Abhijitaundhkar/ChoiceTechLab-Assignment.git
 
 Navigate to the Project Directory:
 
-Change to the cloned project directory:
-
 cd ChoiceTechLab-Assignment
+
 Open the Project in Visual Studio Code:
 
-In the terminal, run the following command to open the project in Visual Studio Code:
+In the terminal, run the following command to open the project in Visual Studio Code.
 
 code .
 
@@ -32,7 +31,7 @@ npm install
 
 # Folder Structure
 
-src->config->database connections and authentication configurations like JWT.
+src->config->database connections and authentication configurations like JWT and redis(only connection is showed for redis).
 
 src->controller->handling all your business logic.
 
