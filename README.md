@@ -29,6 +29,8 @@ code .
 # Install Dependencies
 npm install
 
+# Run
+start application:npm run dev
 # Folder Structure
 
 src->config->database connections and authentication configurations like JWT and redis(only connection is showed for redis).
