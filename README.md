@@ -1,4 +1,4 @@
-# ChoiceTechLab-TO-DO-Assignment
+# Practice-TO-DO-Assignment
 
 # API Test Collection
 
